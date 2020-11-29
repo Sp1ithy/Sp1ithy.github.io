@@ -12,7 +12,7 @@ function start() {
     context = canvas.getContext('2d');
 
     radius = document.getElementById('radius').value;
-    if(radius<2) radius = 10;
+    if (radius < 2) radius = 10;
 
     cols = parseInt(canvas.width / radius);
     rows = parseInt(canvas.height / radius);
@@ -20,9 +20,10 @@ function start() {
     grid = new Array(rows);
     for (let i = 0; i < rows; i++) {
         grid[i] = new Array(cols);
-        grid[i].forEach(el=>el = false);
+        grid[i].forEach(el => el = false);
     }
-    document.getElementById('size').innerHTML = "Size : "+ rows + " x "+cols;
+    document.getElementById('size').innerHTML = "Size : " + rows + " x " + cols;
+    canvas.addEventListener('mousemove', putCell);
     canvas.addEventListener('mousedown', putCell);
     restart();
 }
@@ -139,13 +140,16 @@ function restart() {
 
 
 var putCell = function (e) {
+
     var bounds = e.target.getBoundingClientRect();
     var x = e.clientX - bounds.left;
     var y = e.clientY - bounds.top;
-    x = parseCoordinate(x);
-    y = parseCoordinate(y);
-    grid[x][y] = true;
-    drawCell(x, y, 'red');
+    if (e.buttons == 1 || e.buttons == 3) {
+        x = parseCoordinate(x);
+        y = parseCoordinate(y);
+        grid[x][y] = true;
+        drawCell(x, y, 'red');
+    }
 }
 
 function parseCoordinate(x) {
