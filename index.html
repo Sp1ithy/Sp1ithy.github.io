@@ -8,25 +8,43 @@
     <script src="game.js"></script>
 </head>
 <body>
+
 <div class="field">
-    <canvas id="smile" width="650" height="650">
+    <canvas id="smile" width="600" height="600">
         <p>Ваш браузер не поддерживает рисование.</p>
     </canvas>
 </div>
 <div class="settings">
+    <b id="size"></b>
+    <br/>
+    <button onclick="spawn()">Generate first generation!</button>
+    <button onclick="
+    alert('Место действия этой игры — «вселенная» — это размеченная на клетки поверхность или плоскость — безграничная, ограниченная, или замкнутая (в пределе — бесконечная плоскость).\n'+
+'Каждая клетка на этой поверхности может находиться в двух состояниях: быть «живой» (заполненной) или быть «мёртвой» (пустой). Клетка имеет восемь соседей, окружающих её.\n'+
+'Распределение живых клеток в начале игры называется первым поколением. Каждое следующее поколение рассчитывается на основе предыдущего по таким правилам:\n'+
+'в пустой (мёртвой) клетке, рядом с которой ровно три живые клетки, зарождается жизнь;\n'+
+'если у живой клетки есть две или три живые соседки, то эта клетка продолжает жить; в противном случае, если соседей меньше двух или больше трёх, клетка умирает («от одиночества» или «от перенаселённости»)\n'+
+'Игра прекращается, если\n'+
+'на поле не останется ни одной «живой» клетки\n'+
+'конфигурация на очередном шаге в точности (без сдвигов и поворотов) повторит себя же на одном из более ранних шагов (складывается периодическая конфигурация)\n'+
+'при очередном шаге ни одна из клеток не меняет своего состояния (складывается стабильная конфигурация; предыдущее правило, вырожденное до одного шага назад)')">Read rules</button>
+    <p/>
     <form action="" onsubmit="auto();return false;">
-        <label for="delay">Auto start</label>
-        <input type="number" id="delay" required>
-        <button type="submit">Auto Play</button>
-
+        <label for="probability">Probability</label>
+        <input type="number" id="probability" placeholder="probability %" >
         <br/>
+        <label for="delay">Auto start</label>
+        <input type="number" id="delay" placeholder="milliseconds" required>
+        <button type="submit">Auto Play</button>
     </form>
+    <br/>
     <button onclick="stop()">Stop</button>
-    <p></p>
-    <button class="manualStart" onclick="nextGeneration()">Next Generation!</button>
-
-    <button onclick="spawn()">Restart</button>
+    <p/>
+    <button class="manualStart" onclick="nextGeneration()">Step forward</button>
+    <button onclick="restart()">Restart</button>
 </div>
+
+
 <script>
     start();
 </script>
