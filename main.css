@@ -1,0 +1,18 @@
+body{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    background: #343434;
+}
+.field{
+    background: black;
+    border: 2px dotted lightblue;
+    display: inline-block;
+    margin: 0 auto;
+}
+.settings{
+    display: inline-block;
+    margin-top: 10%;
+
+    padding-right: 15%;
+}
