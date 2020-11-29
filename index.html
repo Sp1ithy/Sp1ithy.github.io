@@ -33,6 +33,8 @@
         <label for="probability">Probability</label>
         <input type="number" id="probability" placeholder="probability %" >
         <br/>
+        <label for="radius">Cell size</label>
+        <input type="number" id="radius" placeholder="cell size px" onchange="start();">
         <label for="delay">Auto start</label>
         <input type="number" id="delay" placeholder="milliseconds" required>
         <button type="submit">Auto Play</button>
@@ -47,6 +49,7 @@
 
 <script>
     start();
+
 </script>
 </body>
 

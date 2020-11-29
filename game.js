@@ -1,7 +1,6 @@
 let canvas;
 let context;
-const radius = 10;
-const step = 12;
+let radius = 10;
 let cols;
 let rows;
 let grid;
@@ -11,19 +10,22 @@ let autoPlay;
 function start() {
     canvas = document.getElementById('smile');
     context = canvas.getContext('2d');
+
+    radius = document.getElementById('radius').value;
+    if(radius<2) radius = 10;
+
     cols = parseInt(canvas.width / radius);
     rows = parseInt(canvas.height / radius);
-
     cells = 0;
     grid = new Array(rows);
     for (let i = 0; i < rows; i++) {
         grid[i] = new Array(cols);
+        grid[i].forEach(el=>el = false);
     }
     document.getElementById('size').innerHTML = "Size : "+ rows + " x "+cols;
-    canvas.addEventListener('mousedown', putCell)
-
+    canvas.addEventListener('mousedown', putCell);
+    restart();
 }
-
 
 function drawCell(x, y, color) {
     context.beginPath();
@@ -127,6 +129,7 @@ function getMousePos(canvas, evt) {
 
 function restart() {
     context.clearRect(0, 0, canvas.width, canvas.height);
+
     for (let i = 0; i < rows; i++) {
         for (let j = 0; j < cols; j++) {
             grid[i][j] = false;
@@ -146,8 +149,8 @@ var putCell = function (e) {
 }
 
 function parseCoordinate(x) {
-    if (x < 100) return parseInt(x / 10);
-    return parseInt(x / 10);
+    if (x < 100) return parseInt(x / radius);
+    return parseInt(x / radius);
 }
 
 
